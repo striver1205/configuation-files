@@ -1108,6 +1108,7 @@ __noreturn
 __pure
 __always_inline
 __printf(x, y)
+__randomize_layout
 uninitialized_var(x) x
 
 ; BPF
