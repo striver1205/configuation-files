@@ -1075,6 +1075,7 @@ __safe
 __force
 __nocast
 __iomem
+__weak
 __chk_user_ptr(x)
 __chk_io_ptr(x)
 __builtin_warning
@@ -1108,8 +1109,17 @@ __noreturn
 __pure
 __always_inline
 __printf(x, y)
-__randomize_layout
 uninitialized_var(x) x
+__ro_after_init
+__visible
+__init_task_data
+
+; PER CPU
+DEFINE_PER_CPU(type, name)	type name
+DEFINE_PER_CPU_SHARED_ALIGNED(type, name) type name
+
+DECLARE_PER_CPU_READ_MOSTLY(type, name) extern type name
+DECLARE_EARLY_PER_CPU_READ_MOSTLY(type, name) extern type name
 
 ; BPF
 BPF_CALL_0(fn) fn
@@ -1122,6 +1132,7 @@ BPF_CALL_5(fn) fn
 DRIVER_ATTR(_name, _mode, _show, _store) struct driver_attribute driver_attr_##_name
 CLASS_ATTR(_name, _mode, _show, _store) struct class_attribute class_attr_##_name
 LIST_HEAD(name) struct list_head name
+LLIST_HEAD(name) struct llist_head name
 DEFINE_MUTEX(mutexname) struct mutex mutexname
 DEFINE_TIMER(_name, _function, _expires, _data) struct timer_list _name
 DECLARE_WORK(n, f) struct work_struct n
@@ -1133,3 +1144,16 @@ DEFINE_IDA(name) struct ida name
 DECLARE_RWSEM(name) struct rw_semaphore name
 DECLARE_BITMAP(name,bits) unsigned long name[bits/32]
 DEFINE_RWLOCK(x) rwlock_t x
+
+DEFINE_PER_CPU_PAGE_ALIGNED(st, v) st v
+DEFINE_PER_CPU(st, v) st v
+
+__pure			
+__aligned(x)		
+__aligned_largest	
+__printf(a, b)		
+__scanf(a, b)		
+__attribute_const__	
+__maybe_unused		
+__always_unused		
+__mode(x) 
