@@ -1118,6 +1118,7 @@ __init_task_data
 DEFINE_PER_CPU(type, name)	type name
 DEFINE_PER_CPU_SHARED_ALIGNED(type, name) type name
 
+DECLARE_PER_CPU(type, name) extern type name
 DECLARE_PER_CPU_READ_MOSTLY(type, name) extern type name
 DECLARE_EARLY_PER_CPU_READ_MOSTLY(type, name) extern type name
 
